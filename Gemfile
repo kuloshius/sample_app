@@ -7,8 +7,6 @@ gem 'rails', '3.0.3'
 
 gem 'mysql2'
 
-gem 'taps'
-
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -35,5 +33,6 @@ end
 group :test do
 	gem 'rspec', '2.3.0'
   gem 'webrat','0.7.1'
+	gem 'spork', '0.8.4'
 end
 
