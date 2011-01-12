@@ -1,10 +1,11 @@
 SampleApp::Application.routes.draw do
-  get "users/new"
+	resources :users
+
 
 	match '/signup',  :to => 'users#new'
 	match '/contact', :to => 'pages#contact'
-  match '/about',   :to => 'pages#about'
-  match '/help',    :to => 'pages#help'
+  	match '/about',   :to => 'pages#about'
+  	match '/help',    :to => 'pages#help'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -63,4 +64,3 @@ root :to => 'pages#home'
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 end
-
