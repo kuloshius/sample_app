@@ -1,11 +1,12 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
-
+gem 'mysql2'
+gem 'gravatar_image_tag'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -35,4 +36,5 @@ group :test do
 	gem 'rspec', '2.3.0'
   gem 'webrat','0.7.1'
 	gem 'spork', '0.8.4'
+	gem 'factory_girl_rails', '1.0'
 end
