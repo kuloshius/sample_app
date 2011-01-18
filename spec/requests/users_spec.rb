@@ -11,11 +11,13 @@ describe "Users" do
 					visit signup_path
 					fill_in "Name",	:with => ""
 					fill_in "Email",	:with => ""
-					fill_in "Password",	:with => ""
-					fill_in "Confirmation",	:with => ""
+					fill_in "Password",	:with => "foobar"
+					fill_in "Confirmation",	:with => "foobar"
 					click_button
 					response.should render_template('users/new')
 					response.should have_selector("div#error_explanation")
+					response.should_not have_selector("input#user_password", :value => "foobar")
+					response.should_not have_selector("input#user_password_confirmation", :value => "foobar")
 				end.should_not change(User, :count)
 			end
 		end
