@@ -1,9 +1,11 @@
 SampleApp::Application.routes.draw do
   get "sessions/new"
 
-	resources :users
+	resources :users do
+	  resources :microposts, :only => :index
+ end
 	resources :sessions, 	:only => [:new, :create, :destroy]
-	resources :microposts,	:only => [:create, :destroy]
+  resources :microposts,	:only => [:create, :destroy]
 
 
 	match '/signup',	:to => 'users#new'

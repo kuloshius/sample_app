@@ -10,11 +10,17 @@ describe "Microposts" do
     click_button
   end
 
+  it "should have sidebar micropost counts with proper pluralization" do
+    visit root_path
+    response.should have_selector('span.microposts', :content => "0 microposts")
+  end
+
+
   describe "creation" do
 
     describe "failure" do
 
-      it "should not make a neww micropost" do
+      it "should not make a new micropost" do
         lambda do
           visit root_path
           fill_in :micropost_content, :with => ""
@@ -22,6 +28,16 @@ describe "Microposts" do
           response.should render_template('pages/home')
           response.should have_selector("div#error_explanation")
         end.should_not change(Micropost, :count)
+      end
+
+      it "should not create new micropost longer than 140 characters and not clear text area" do
+        lambda do
+          visit root_path
+          fill_in :micropost_content, :with => "a" * 141
+          click_button
+          response.should render_template('pages/home')
+          response.should have_selector("textarea", :content => "a" *141)
+        end.should_not change(Micropost,:count)
       end
     end
 

@@ -1,9 +1,13 @@
 <%= form_for @micropost do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="field">
-    <%= f.text_area :content %>
+    <%= f.text_area :content, :maxlength => 140 %>
   </div>
+  <div>Characters left: <span id="char_count"><%=140-@micropost.content.to_s.length%></span></div>
   <div class="actions">
     <%= f.submit "Submit" %>
   </div>
 <% end %>
+<script>
+$('#micropost_content').live('keyup keydown', function(e) {var maxLen = 140; var left = maxLen - $(this).val().length; $('#char_count').html(left);});
+</script>
